@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class RecipeRequestDTO {
 
-    @NotBlank(message = "Recipe name is required")
+    @NotBlank(message = "RecipeEntity name is required")
     private String name;
 
     private String description;

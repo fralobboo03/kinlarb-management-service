@@ -8,13 +8,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "recipe_ingredients")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecipeIngredient {
+public class RecipeIngredientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +25,8 @@ public class RecipeIngredient {
     @JoinColumn(name = "recipe_id")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Recipe recipe;
+    @JsonIgnore
+    private RecipeEntity recipe;
 
     @NotBlank(message = "Ingredient name is required")
     private String ingredientName;

@@ -17,13 +17,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Recipe {
+public class RecipeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Recipe name is required")
+    @NotBlank(message = "RecipeEntity name is required")
     private String name;
 
     private String description;
@@ -40,9 +40,9 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private List<RecipeIngredient> ingredients = new ArrayList<>();
+    private List<RecipeIngredientEntity> ingredients = new ArrayList<>();
 
-    public void addIngredient(RecipeIngredient ingredient) {
+    public void addIngredient(RecipeIngredientEntity ingredient) {
         ingredients.add(ingredient);
         ingredient.setRecipe(this);
     }
