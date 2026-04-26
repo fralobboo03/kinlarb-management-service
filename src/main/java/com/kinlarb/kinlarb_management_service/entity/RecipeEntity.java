@@ -29,13 +29,16 @@ public class RecipeEntity {
     private String description;
 
     @Min(0)
+    @Column(name = "total_cost")
     private Double totalCost;
 
     @Min(0)
-    private Double targetMargin;
+    @Column(name = "margin_percent")
+    private Double marginPercent;
 
     @Min(0)
-    private Double sellingPrice;
+    @Column(name = "suggested_price")
+    private Double suggestedPrice;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude

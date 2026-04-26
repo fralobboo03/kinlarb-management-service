@@ -9,20 +9,16 @@ import lombok.Data;
 public class RecipeIngredientDTO {
 
     @NotBlank(message = "Ingredient name is required")
-    @JsonProperty("name")
-    private String ingredientName;
+    private String name;
 
     @Min(0)
-    @JsonProperty("quantityUsed")
-    private Double quantity;
+    private Double quantityUsed;
 
     private String unit;
 
     @Min(0)
-    @JsonProperty("costPerUnit")
-    private Double unitCost;
+    private Double costPerUnit;
     
     @Min(0)
-    @JsonProperty("totalCost")
-    private Double subTotal;
+    private Double totalCost;
 }

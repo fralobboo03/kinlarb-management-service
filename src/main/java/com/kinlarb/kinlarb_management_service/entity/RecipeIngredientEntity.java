@@ -29,16 +29,21 @@ public class RecipeIngredientEntity {
     private RecipeEntity recipe;
 
     @NotBlank(message = "Ingredient name is required")
-    private String ingredientName;
+    @Column(name = "name")
+    private String name;
 
     @Min(0)
-    private Double quantity;
+    @Column(name = "quantity_used")
+    private Double quantityUsed;
 
+    @Column(name = "unit")
     private String unit;
 
     @Min(0)
-    private Double unitCost;
+    @Column(name = "cost_per_unit")
+    private Double costPerUnit;
 
     @Min(0)
-    private Double subTotal;
+    @Column(name = "total_cost")
+    private Double totalCost;
 }

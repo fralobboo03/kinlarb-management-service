@@ -22,24 +22,24 @@ public class RecipeService {
         RecipeEntity recipe = new RecipeEntity();
         recipe.setName(requestDTO.getName());
         recipe.setDescription(requestDTO.getDescription());
-        recipe.setTargetMargin(requestDTO.getTargetMargin());
-        recipe.setSellingPrice(requestDTO.getSellingPrice());
+        recipe.setMarginPercent(requestDTO.getMarginPercent());
+        recipe.setSuggestedPrice(requestDTO.getSuggestedPrice());
 
         double totalRecipeCost = 0.0;
 
         if (requestDTO.getIngredients() != null) {
             for (RecipeIngredientDTO ingredientDTO : requestDTO.getIngredients()) {
                 RecipeIngredientEntity ingredient = new RecipeIngredientEntity();
-                ingredient.setIngredientName(ingredientDTO.getIngredientName());
-                ingredient.setQuantity(ingredientDTO.getQuantity());
+                ingredient.setName(ingredientDTO.getName());
+                ingredient.setQuantityUsed(ingredientDTO.getQuantityUsed());
                 ingredient.setUnit(ingredientDTO.getUnit());
-                ingredient.setUnitCost(ingredientDTO.getUnitCost());
+                ingredient.setCostPerUnit(ingredientDTO.getCostPerUnit());
 
                 // Calculate subtotal
-                double qty = ingredientDTO.getQuantity() != null ? ingredientDTO.getQuantity() : 0.0;
-                double cost = ingredientDTO.getUnitCost() != null ? ingredientDTO.getUnitCost() : 0.0;
+                double qty = ingredientDTO.getQuantityUsed() != null ? ingredientDTO.getQuantityUsed() : 0.0;
+                double cost = ingredientDTO.getCostPerUnit() != null ? ingredientDTO.getCostPerUnit() : 0.0;
                 double subTotal = qty * cost;
-                ingredient.setSubTotal(subTotal);
+                ingredient.setTotalCost(subTotal);
 
                 totalRecipeCost += subTotal;
 
@@ -64,8 +64,8 @@ public class RecipeService {
         
         recipe.setName(requestDTO.getName());
         recipe.setDescription(requestDTO.getDescription());
-        recipe.setTargetMargin(requestDTO.getTargetMargin());
-        recipe.setSellingPrice(requestDTO.getSellingPrice());
+        recipe.setMarginPercent(requestDTO.getMarginPercent());
+        recipe.setSuggestedPrice(requestDTO.getSuggestedPrice());
 
         // Clear existing ingredients and recreate
         recipe.getIngredients().clear();
@@ -74,15 +74,15 @@ public class RecipeService {
         if (requestDTO.getIngredients() != null) {
             for (RecipeIngredientDTO ingredientDTO : requestDTO.getIngredients()) {
                 RecipeIngredientEntity ingredient = new RecipeIngredientEntity();
-                ingredient.setIngredientName(ingredientDTO.getIngredientName());
-                ingredient.setQuantity(ingredientDTO.getQuantity());
+                ingredient.setName(ingredientDTO.getName());
+                ingredient.setQuantityUsed(ingredientDTO.getQuantityUsed());
                 ingredient.setUnit(ingredientDTO.getUnit());
-                ingredient.setUnitCost(ingredientDTO.getUnitCost());
+                ingredient.setCostPerUnit(ingredientDTO.getCostPerUnit());
 
-                double qty = ingredientDTO.getQuantity() != null ? ingredientDTO.getQuantity() : 0.0;
-                double cost = ingredientDTO.getUnitCost() != null ? ingredientDTO.getUnitCost() : 0.0;
+                double qty = ingredientDTO.getQuantityUsed() != null ? ingredientDTO.getQuantityUsed() : 0.0;
+                double cost = ingredientDTO.getCostPerUnit() != null ? ingredientDTO.getCostPerUnit() : 0.0;
                 double subTotal = qty * cost;
-                ingredient.setSubTotal(subTotal);
+                ingredient.setTotalCost(subTotal);
 
                 totalRecipeCost += subTotal;
                 recipe.addIngredient(ingredient);

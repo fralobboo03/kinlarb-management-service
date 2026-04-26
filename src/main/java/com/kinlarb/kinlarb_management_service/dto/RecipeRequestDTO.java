@@ -17,12 +17,10 @@ public class RecipeRequestDTO {
     private String description;
 
     @Min(0)
-    @JsonProperty("marginPercent")
-    private Double targetMargin;
+    private Double marginPercent;
 
     @Min(0)
-    @JsonProperty("suggestedPrice")
-    private Double sellingPrice;
+    private Double suggestedPrice;
     
     @Min(0)
     private Double totalCost;
