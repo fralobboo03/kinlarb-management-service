@@ -19,13 +19,13 @@ public class RecipeController {
 
     private final RecipeService recipeService;
 
-    @PostMapping
+    @PostMapping("/create-recipe")
     public ResponseEntity<Recipe> createRecipe(@Valid @RequestBody RecipeRequestDTO requestDTO) {
         Recipe savedRecipe = recipeService.saveRecipe(requestDTO);
         return new ResponseEntity<>(savedRecipe, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/get-all-recipes")
     public ResponseEntity<List<Recipe>> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipes();
         return ResponseEntity.ok(recipes);
