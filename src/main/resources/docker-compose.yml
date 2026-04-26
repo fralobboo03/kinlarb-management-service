@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  kinlarb-db:
+    image: postgres:16-alpine
+    container_name: kinlarb_postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: kinlarb_dev
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: kinlarb_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - kinlarb_postgres_data:/var/lib/postgresql/data
+
+  kinlarb-pgadmin:
+    image: dpage/pgadmin4
+    container_name: kinlarb_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@kinlarb.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - kinlarb-db
+
+volumes:
+  kinlarb_postgres_data:
