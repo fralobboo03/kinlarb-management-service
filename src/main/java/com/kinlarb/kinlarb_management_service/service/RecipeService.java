@@ -61,13 +61,18 @@ public class RecipeService {
     public RecipeEntity updateRecipe(Long id, RecipeRequestDTO requestDTO) {
         RecipeEntity recipe = recipeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("RecipeEntity not found"));
-        
+
         recipe.setName(requestDTO.getName());
         recipe.setDescription(requestDTO.getDescription());
         recipe.setMarginPercent(requestDTO.getMarginPercent());
         recipe.setSuggestedPrice(requestDTO.getSuggestedPrice());
+        recipe.setDate(requestDTO.getDate());
+        recipe.setRecipeNo(requestDTO.getRecipeNo());
+        recipe.setCategory(requestDTO.getCategory());
+        recipe.setPortions(requestDTO.getPortions());
+        recipe.setPreparedBy(requestDTO.getPreparedBy());
+        recipe.setTotalCost(requestDTO.getTotalCost());
 
-        // Clear existing ingredients and recreate
         recipe.getIngredients().clear();
         double totalRecipeCost = 0.0;
 

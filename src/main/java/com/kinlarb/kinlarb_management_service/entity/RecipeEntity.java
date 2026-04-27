@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,21 @@ public class RecipeEntity {
 
     @NotBlank(message = "RecipeEntity name is required")
     private String name;
+
+    @Column(name = "recipe_no")
+    private String recipeNo;
+
+    @Column(name = "date")
+    private Date date;
+
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "portions")
+    private Integer portions;
+
+    @Column(name = "prepared_by")
+    private String preparedBy;
 
     private String description;
 
